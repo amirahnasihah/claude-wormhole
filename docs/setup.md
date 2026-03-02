@@ -7,8 +7,10 @@ Phone (Safari PWA / SSH)
   │
   │  Tailscale private network
   │
-Mac (tmux + Claude Code + web server)
+Mac or Linux server (tmux + Claude Code + web server)
 ```
+
+**Running on a Linux server (Hetzner, VPS)?** See **[Deploy on Linux](deploy-linux.md)** for Tailscale, systemd, and server setup.
 
 ## Automated Install
 

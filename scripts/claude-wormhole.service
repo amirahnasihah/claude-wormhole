@@ -1,0 +1,27 @@
+# systemd user service for claude-wormhole (Linux)
+# Install:
+#   mkdir -p ~/.config/systemd/user
+#   sed "s|__WORMHOLE_ROOT__|$HOME/claude-wormhole|g" scripts/claude-wormhole.service > ~/.config/systemd/user/claude-wormhole.service
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now claude-wormhole
+# Usage:
+#   systemctl --user status claude-wormhole
+#   systemctl --user restart claude-wormhole
+#   journalctl --user -u claude-wormhole -f
+
+[Unit]
+Description=claude-wormhole web terminal
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=__WORMHOLE_ROOT__
+# Use login shell so PATH includes nvm/node, and .env is sourced if needed
+ExecStart=/bin/bash -lc 'cd __WORMHOLE_ROOT__ && ./bin/wormhole start'
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
